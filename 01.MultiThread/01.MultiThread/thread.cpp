@@ -1,3 +1,6 @@
+//#define RUN // 실행하고 싶을 때 주석 해제
+#ifdef RUN
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -68,4 +71,8 @@ int main() {
 
 
 	cout << "HelloMain!" << endl;
+
+	return 0;
 }
+
+#endif
