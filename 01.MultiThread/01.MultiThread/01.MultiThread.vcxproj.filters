@@ -13,16 +13,49 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Lock">
+      <UniqueIdentifier>{9917d99a-29c5-462a-bf02-db852f71571f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Atomic">
+      <UniqueIdentifier>{6f287de4-e281-464a-9730-2afced964344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Thread">
+      <UniqueIdentifier>{1bfc5fc4-b7e9-49cb-8cac-56c0a1cc113f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DeadLock">
+      <UniqueIdentifier>{698f931e-9144-4496-ac85-60956b937557}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="thread.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Atomic_after.cpp">
+      <Filter>Source Files\Atomic</Filter>
     </ClCompile>
     <ClCompile Include="Atomic_before.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Atomic</Filter>
     </ClCompile>
-    <ClCompile Include="Atomic_after.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="lock_basic.cpp">
+      <Filter>Source Files\Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="thread.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="lock_guard.cpp">
+      <Filter>Source Files\Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountManager.h">
+      <Filter>Source Files\DeadLock</Filter>
+    </ClCompile>
+    <ClCompile Include="UserManager.h">
+      <Filter>Source Files\DeadLock</Filter>
+    </ClCompile>
+    <ClCompile Include="run.cpp">
+      <Filter>Source Files\DeadLock</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountManager.cpp">
+      <Filter>Source Files\DeadLock</Filter>
+    </ClCompile>
+    <ClCompile Include="UserManager.cpp">
+      <Filter>Source Files\DeadLock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

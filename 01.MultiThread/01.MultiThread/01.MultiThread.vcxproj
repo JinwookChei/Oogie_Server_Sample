@@ -123,9 +123,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AccountManager.cpp" />
+    <ClCompile Include="AccountManager.h" />
     <ClCompile Include="Atomic_after.cpp" />
     <ClCompile Include="Atomic_before.cpp" />
+    <ClCompile Include="lock_basic.cpp" />
+    <ClCompile Include="lock_guard.cpp" />
+    <ClCompile Include="run.cpp" />
     <ClCompile Include="thread.cpp" />
+    <ClCompile Include="UserManager.cpp" />
+    <ClCompile Include="UserManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

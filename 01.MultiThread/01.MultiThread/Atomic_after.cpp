@@ -1,4 +1,4 @@
-#define RUN // 실행하고 싶을 때 주석 해제
+//#define RUN // 실행하고 싶을 때 주석 해제
 #ifdef RUN
 
 #include <iostream>
