@@ -25,6 +25,9 @@
     <Filter Include="Source Files\DeadLock">
       <UniqueIdentifier>{698f931e-9144-4496-ac85-60956b937557}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SpinLock">
+      <UniqueIdentifier>{71f826ae-c21a-47b5-a1dd-3a24bccde96c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Atomic_after.cpp">
@@ -56,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="UserManager.cpp">
       <Filter>Source Files\DeadLock</Filter>
+    </ClCompile>
+    <ClCompile Include="SpinLock.cpp">
+      <Filter>Source Files\SpinLock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
