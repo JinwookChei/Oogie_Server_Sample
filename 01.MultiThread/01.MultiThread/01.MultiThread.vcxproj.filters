@@ -31,6 +31,9 @@
     <Filter Include="Source Files\SLEEP">
       <UniqueIdentifier>{23f5cab0-702a-4a82-8f3b-12627ea2820c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Event">
+      <UniqueIdentifier>{57433657-835e-40d3-a3e7-290cb8230ee9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Atomic_after.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="Sleep.cpp">
       <Filter>Source Files\SLEEP</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files\Event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

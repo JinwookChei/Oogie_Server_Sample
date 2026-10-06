@@ -127,6 +127,7 @@
     <ClCompile Include="AccountManager.h" />
     <ClCompile Include="Atomic_after.cpp" />
     <ClCompile Include="Atomic_before.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="Sleep.cpp" />
     <ClCompile Include="SpinLock.cpp" />
     <ClCompile Include="lock_basic.cpp" />
