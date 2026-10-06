@@ -28,6 +28,9 @@
     <Filter Include="Source Files\SpinLock">
       <UniqueIdentifier>{71f826ae-c21a-47b5-a1dd-3a24bccde96c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SLEEP">
+      <UniqueIdentifier>{23f5cab0-702a-4a82-8f3b-12627ea2820c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Atomic_after.cpp">
@@ -62,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="SpinLock.cpp">
       <Filter>Source Files\SpinLock</Filter>
+    </ClCompile>
+    <ClCompile Include="Sleep.cpp">
+      <Filter>Source Files\SLEEP</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
