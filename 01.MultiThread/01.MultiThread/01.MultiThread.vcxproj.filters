@@ -13,67 +13,73 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Lock">
-      <UniqueIdentifier>{9917d99a-29c5-462a-bf02-db852f71571f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Atomic">
-      <UniqueIdentifier>{6f287de4-e281-464a-9730-2afced964344}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Thread">
+    <Filter Include="Source Files\01.Thread">
       <UniqueIdentifier>{1bfc5fc4-b7e9-49cb-8cac-56c0a1cc113f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\DeadLock">
+    <Filter Include="Source Files\02.Atomic">
+      <UniqueIdentifier>{6f287de4-e281-464a-9730-2afced964344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\03.Lock">
+      <UniqueIdentifier>{9917d99a-29c5-462a-bf02-db852f71571f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\04.DeadLock">
       <UniqueIdentifier>{698f931e-9144-4496-ac85-60956b937557}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SpinLock">
+    <Filter Include="Source Files\05.SpinLock">
       <UniqueIdentifier>{71f826ae-c21a-47b5-a1dd-3a24bccde96c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SLEEP">
+    <Filter Include="Source Files\06.SLEEP">
       <UniqueIdentifier>{23f5cab0-702a-4a82-8f3b-12627ea2820c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Event">
+    <Filter Include="Source Files\07.Event">
       <UniqueIdentifier>{57433657-835e-40d3-a3e7-290cb8230ee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\08.ConditionVariable">
+      <UniqueIdentifier>{45f8019c-7af8-450d-bb39-ee4f596e97b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Atomic_after.cpp">
-      <Filter>Source Files\Atomic</Filter>
+      <Filter>Source Files\02.Atomic</Filter>
     </ClCompile>
     <ClCompile Include="Atomic_before.cpp">
-      <Filter>Source Files\Atomic</Filter>
+      <Filter>Source Files\02.Atomic</Filter>
     </ClCompile>
     <ClCompile Include="lock_basic.cpp">
-      <Filter>Source Files\Lock</Filter>
+      <Filter>Source Files\03.Lock</Filter>
     </ClCompile>
     <ClCompile Include="thread.cpp">
-      <Filter>Source Files\Thread</Filter>
+      <Filter>Source Files\01.Thread</Filter>
     </ClCompile>
     <ClCompile Include="lock_guard.cpp">
-      <Filter>Source Files\Lock</Filter>
+      <Filter>Source Files\03.Lock</Filter>
     </ClCompile>
     <ClCompile Include="AccountManager.h">
-      <Filter>Source Files\DeadLock</Filter>
+      <Filter>Source Files\04.DeadLock</Filter>
     </ClCompile>
     <ClCompile Include="UserManager.h">
-      <Filter>Source Files\DeadLock</Filter>
+      <Filter>Source Files\04.DeadLock</Filter>
     </ClCompile>
     <ClCompile Include="run.cpp">
-      <Filter>Source Files\DeadLock</Filter>
+      <Filter>Source Files\04.DeadLock</Filter>
     </ClCompile>
     <ClCompile Include="AccountManager.cpp">
-      <Filter>Source Files\DeadLock</Filter>
+      <Filter>Source Files\04.DeadLock</Filter>
     </ClCompile>
     <ClCompile Include="UserManager.cpp">
-      <Filter>Source Files\DeadLock</Filter>
+      <Filter>Source Files\04.DeadLock</Filter>
     </ClCompile>
     <ClCompile Include="SpinLock.cpp">
-      <Filter>Source Files\SpinLock</Filter>
+      <Filter>Source Files\05.SpinLock</Filter>
     </ClCompile>
     <ClCompile Include="Sleep.cpp">
-      <Filter>Source Files\SLEEP</Filter>
+      <Filter>Source Files\06.SLEEP</Filter>
     </ClCompile>
     <ClCompile Include="Event.cpp">
-      <Filter>Source Files\Event</Filter>
+      <Filter>Source Files\07.Event</Filter>
+    </ClCompile>
+    <ClCompile Include="ConditionVariable.cpp">
+      <Filter>Source Files\08.ConditionVariable</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
