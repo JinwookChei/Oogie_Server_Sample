@@ -129,12 +129,14 @@
     <ClCompile Include="Atomic_before.cpp" />
     <ClCompile Include="ConditionVariable.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="Future.cpp" />
     <ClCompile Include="Sleep.cpp" />
     <ClCompile Include="SpinLock.cpp" />
     <ClCompile Include="lock_basic.cpp" />
     <ClCompile Include="lock_guard.cpp" />
     <ClCompile Include="run.cpp" />
     <ClCompile Include="thread.cpp" />
+    <ClCompile Include="TLS.cpp" />
     <ClCompile Include="UserManager.cpp" />
     <ClCompile Include="UserManager.h" />
   </ItemGroup>

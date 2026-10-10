@@ -37,6 +37,12 @@
     <Filter Include="Source Files\08.ConditionVariable">
       <UniqueIdentifier>{45f8019c-7af8-450d-bb39-ee4f596e97b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\09.Future">
+      <UniqueIdentifier>{ae370127-270f-4868-bf6f-400e52e70327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\10.TLS">
+      <UniqueIdentifier>{769891a3-3378-489e-b108-1a2ae4eb004f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Atomic_after.cpp">
@@ -80,6 +86,12 @@
     </ClCompile>
     <ClCompile Include="ConditionVariable.cpp">
       <Filter>Source Files\08.ConditionVariable</Filter>
+    </ClCompile>
+    <ClCompile Include="Future.cpp">
+      <Filter>Source Files\09.Future</Filter>
+    </ClCompile>
+    <ClCompile Include="TLS.cpp">
+      <Filter>Source Files\10.TLS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
