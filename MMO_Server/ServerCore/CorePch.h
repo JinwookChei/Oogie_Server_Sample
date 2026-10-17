@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Types.h"
+#include "CoreGlobal.h"
+#include "CoreTLS.h"
+
 #include <vector>
 #include <list>
 #include <queue>

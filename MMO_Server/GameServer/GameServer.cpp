@@ -1,22 +1,29 @@
 ﻿#include "pch.h"
 #include <iostream>
+#include <windows.h>
+#include <chrono>
 #include "CorePch.h"
-
-// #include <Windows.h> -> -> CreateThread();
-// 라는 window 종속적인 쓰레드를 사용해 왔으나, C++ 11부터 
-// 운영체제 독립적인 #include <thread>를 사용 할 수 있게 되었음.
-// 
 #include <thread>
+#include "CoreMacro.h"
+#include "ThreadManager.h"
+CoreGlobal Core;
 
-void HelloThread() {
-	cout << "HelloTherad" << endl;
+void ThreadMain()
+{
+	while (true)
+	{
+		cout << "Hello!! I am thread..." << LThreadId << endl;
+		this_thread::sleep_for(1s);
+	}
 }
+
 
 int main()
 {
-	std::thread t(HelloThread);
-	
-	cout << "Hello Main" << endl;
+	for (int32 i = 0; i < 5; ++i)
+	{
+		GThreadManager->Launch(ThreadMain);
+	}
 
-	t.join();
+	GThreadManager->Join();
 }
