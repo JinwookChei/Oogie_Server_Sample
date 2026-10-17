@@ -1,13 +1,15 @@
 #pragma once
-
+#include <stack>
 #include <mutex>
+#include <condition_variable>
+using namespace std;
+
 
 template<typename T>
 class LockStack
 {
 public:
-	LockStack() { }
-
+	LockStack() {}
 	LockStack(const LockStack&) = delete;
 	LockStack& operator=(const LockStack&) = delete;
 
@@ -21,10 +23,9 @@ public:
 	bool TryPop(T& value)
 	{
 		lock_guard<mutex> lock(_mutex);
-		if (_stack.empty())
+		if (_stack.empty()) 
 			return false;
-
-		// empty -> top -> pop
+		
 		value = std::move(_stack.top());
 		_stack.pop();
 		return true;
@@ -33,10 +34,14 @@ public:
 	void WaitPop(T& value)
 	{
 		unique_lock<mutex> lock(_mutex);
-		_condVar.wait(lock, [this] { return _stack.empty() == false; });
+		_condVar.wait(lock, [this] 
+			{ return _stack.empty() == false; }
+		);
+
 		value = std::move(_stack.top());
 		_stack.pop();
 	}
+
 
 private:
 	stack<T> _stack;

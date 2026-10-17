@@ -1,15 +1,17 @@
 #pragma once
+#include <queue>
 #include <mutex>
+#include <condition_variable>
+using namespace std;
 
 template<typename T>
 class LockQueue
 {
 public:
-	LockQueue() { }
-
+	LockQueue() {}
 	LockQueue(const LockQueue&) = delete;
 	LockQueue& operator=(const LockQueue&) = delete;
-
+	
 	void Push(T value)
 	{
 		lock_guard<mutex> lock(_mutex);
@@ -31,7 +33,10 @@ public:
 	void WaitPop(T& value)
 	{
 		unique_lock<mutex> lock(_mutex);
-		_condVar.wait(lock, [this] { return _queue.empty() == false; });
+		_condVar.wait(lock, [this] 
+			{ return _queue.empty() == false; }
+		);
+
 		value = std::move(_queue.front());
 		_queue.pop();
 	}
