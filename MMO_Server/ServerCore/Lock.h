@@ -48,14 +48,18 @@ class Lock
 	};
 
 public:
+	/*
+		name : DeadLockProfiler에 넘길 락 이름 (보통 typeid(this).name() = 클래스 이름).
+		       _DEBUG 빌드에서 락 순서 그래프의 정점을 구분하는 데만 쓰인다.
+	*/
 	/* 쓰기(독점) 락 획득. 같은 스레드의 재귀 획득 허용. */
-	void WriteLock();
+	void WriteLock(const char* name);
 	/* 쓰기 락 해제. 재귀 횟수가 0이 될 때 실제로 풀린다. */
-	void WriteUnlock();
+	void WriteUnlock(const char* name);
 	/* 읽기(공유) 락 획득. Writer가 없으면 여러 스레드가 동시에 획득 가능. */
-	void ReadLock();
+	void ReadLock(const char* name);
 	/* 읽기 락 해제. 읽기 카운트를 1 감소. */
-	void ReadUnLock();
+	void ReadUnLock(const char* name);
 
 private:
 	Atomic<uint32> _lockFlag = EMPTY_FLAG;	// [W 16bit][R 16bit] 상태값
@@ -72,17 +76,18 @@ private:
 class ReadLockGuard
 {
 public:
-	ReadLockGuard(Lock& lock) : _lock(lock) 
+	ReadLockGuard(Lock& lock, const char* name) : _lock(lock), _name(name)
 	{
-		_lock.ReadLock();  
+		_lock.ReadLock(_name);  
 	}
 	~ReadLockGuard() 
 	{
-		_lock.ReadUnLock();
+		_lock.ReadUnLock(_name);
 	}
 
 private:
 	Lock& _lock;
+	const char* _name;	// Lock/Unlock 양쪽에 같은 이름을 넘기기 위해 보관 (DeadLockProfiler용)
 };
 
 
@@ -94,15 +99,16 @@ private:
 class WriteLockGuard
 {
 public:
-	WriteLockGuard(Lock& lock) : _lock(lock)
+	WriteLockGuard(Lock& lock, const char* name) : _lock(lock), _name(name)
 	{
-		_lock.WriteLock();
+		_lock.WriteLock(_name);
 	}
 	~WriteLockGuard()
 	{
-		_lock.WriteUnlock();
+		_lock.WriteUnlock(_name);
 	}
 
 private:
 	Lock& _lock;
+	const char* _name;	// Lock/Unlock 양쪽에 같은 이름을 넘기기 위해 보관 (DeadLockProfiler용)
 };

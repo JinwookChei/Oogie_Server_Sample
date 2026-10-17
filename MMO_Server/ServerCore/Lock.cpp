@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Lock.h"
 #include "CoreTLS.h"
+#include "DeadLockProfiler.h"
 
 /*
 	[Lock::WriteLock]
@@ -16,8 +17,15 @@
 	- 주의: LThreadId는 ThreadManager에서 1부터 발급된다.
 	        ID가 0인(발급받지 않은) 스레드는 소유자 없음(0)과 구분되지 않으므로 사용하면 안 된다.
 */
-void Lock::WriteLock()
+void Lock::WriteLock(const char* name)
 {
+	// [DeadLock 탐지] 실제로 락을 잡기 "전에" 순서를 기록한다.
+	// 잡은 뒤에 기록하면, 진짜 데드락이 걸렸을 때 여기까지 오지 못해 탐지할 수 없다.
+	// 비용이 크므로 Debug 빌드에서만 동작한다.
+#if _DEBUG
+	GDeadLockProfiler->PushLock(name);
+#endif
+
 	const uint32 lockThreadId = (_lockFlag.load() & WRITE_THREAD_MASK) >> 16;	// 상위 16bit = 현재 Write 소유 스레드 ID
 	if (LThreadId == lockThreadId)
 	{
@@ -51,8 +59,13 @@ void Lock::WriteLock()
 	- 재귀 횟수(_writeCount)를 1 줄이고, 0이 되면 _lockFlag를 EMPTY로 만들어 락을 완전히 푼다.
 	- W -> R 순서로 잡았다면 Read를 먼저 다 풀어야 한다. (R 카운트가 남아 있으면 CRASH)
 */
-void Lock::WriteUnlock()
+void Lock::WriteUnlock(const char* name)
 {
+	// [DeadLock 탐지] 잡고 있는 락 스택에서 제거 (잡은 역순으로 푸는지도 검사)
+#if _DEBUG
+	GDeadLockProfiler->PopLock(name);
+#endif
+
 	if ((_lockFlag.load() & READ_COUNT_MASK) != 0)
 		CRASH("INVALID_UNLOCK_ORDER");
 
@@ -74,8 +87,13 @@ void Lock::WriteUnlock()
 	- 같은 스레드가 이미 Write 소유자라면(W -> R) 경합 없이 R 카운트만 올리고 즉시 성공.
 	  (이미 독점 중이라 다른 스레드가 끼어들 수 없으므로 CAS 없이 fetch_add로 충분)
 */
-void Lock::ReadLock()
+void Lock::ReadLock(const char* name)
 {
+	// [DeadLock 탐지] Read Lock도 Write를 기다리며 막힐 수 있으므로 똑같이 순서를 기록한다.
+#if _DEBUG
+	GDeadLockProfiler->PushLock(name);
+#endif
+
 	const uint32 lockThreadId = (_lockFlag.load() & WRITE_THREAD_MASK) >> 16;
 	if (LThreadId == lockThreadId)
 	{
@@ -106,8 +124,13 @@ void Lock::ReadLock()
 	- fetch_sub는 "빼기 전 값"을 반환한다. 그 값의 R이 이미 0이었다면
 	  잡지도 않은 Read Lock을 풀려는 것(중복 해제)이므로 CRASH.
 */
-void Lock::ReadUnLock()
+void Lock::ReadUnLock(const char* name)
 {
+	// [DeadLock 탐지] 잡고 있는 락 스택에서 제거
+#if _DEBUG
+	GDeadLockProfiler->PopLock(name);
+#endif
+
 	if ((_lockFlag.fetch_sub(1) & READ_COUNT_MASK) == 0)
 		CRASH("MULTIPLE_UNLOCK");
 }
